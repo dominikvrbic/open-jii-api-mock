@@ -7,11 +7,13 @@ This document provides instructions for building and running the API Mock Server
 ### Option 1: Using Docker Compose (Recommended)
 
 1. **Build and run the production container:**
+
    ```bash
    docker-compose up --build
    ```
 
 2. **For development with hot reload:**
+
    ```bash
    docker-compose --profile dev up --build
    ```
@@ -24,6 +26,7 @@ This document provides instructions for building and running the API Mock Server
 ### Option 2: Using Docker directly
 
 1. **Build the Docker image:**
+
    ```bash
    docker build -t api-mock-server .
    ```
@@ -57,6 +60,7 @@ The following environment variables can be configured:
 - `NODE_ENV`: Environment (production/development)
 
 Example:
+
 ```bash
 docker run -p 3001:3000 -e PORT=3000 -e NODE_ENV=production api-mock-server
 ```
@@ -64,6 +68,7 @@ docker run -p 3001:3000 -e PORT=3000 -e NODE_ENV=production api-mock-server
 ## Health Check
 
 The container includes a health check endpoint at `/health` that returns:
+
 ```json
 {
   "status": "OK",
@@ -127,6 +132,7 @@ docker-compose down && docker-compose up --build
 ## Accessing the API
 
 Once the container is running, the API will be available at:
+
 - Base URL: `http://localhost:3001`
 - Health check: `http://localhost:3001/health`
 - API endpoints: `http://localhost:3001/api/v1/experiments`
@@ -134,6 +140,7 @@ Once the container is running, the API will be available at:
 ## Volume Mounts
 
 The Docker setup includes volume mounts for:
+
 - `./data:/app/data:ro` - Read-only mount for OpenAPI spec and mock data
 - Development mode also mounts the entire source code for hot reloading
 
@@ -147,6 +154,7 @@ A comprehensive test script is provided to verify that everything is working cor
 ```
 
 This script tests:
+
 - Docker container status
 - Health check endpoint
 - API endpoints functionality
@@ -156,23 +164,27 @@ This script tests:
 ## Troubleshooting
 
 1. **Port already in use:**
+
    ```bash
    # Use a different port
    docker run -p 3002:3000 api-mock-server
    ```
 
 2. **Check container status:**
+
    ```bash
    docker ps
    docker logs api-mock-server
    ```
 
 3. **Run the test script for diagnostics:**
+
    ```bash
    ./test-docker.sh
    ```
 
 4. **Clean up containers and images:**
+
    ```bash
    docker-compose down
    docker system prune -a
