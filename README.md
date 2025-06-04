@@ -90,9 +90,75 @@ This project is an API mock server that simulates the behavior of a real API for
 
 For detailed Docker instructions, see [DOCKER.md](./DOCKER.md).
 
+## API Documentation
+
+### 📚 Interactive API Docs
+
+The API documentation is automatically generated from the OpenAPI specification and available in multiple formats:
+
+- **GitHub Pages**: [Live API Documentation](https://YOUR_USERNAME.github.io/YOUR_REPO/) *(Update this URL)*
+- **Local Documentation**: `docs/index.html`
+- **OpenAPI Spec**: `data/openapi.json`
+
+### 🌐 View Documentation Locally
+
+```bash
+# Start a local documentation server
+./serve-docs.sh
+
+# Or manually serve the docs directory
+cd docs && python3 -m http.server 8080
+```
+
+Then open [http://localhost:8080](http://localhost:8080) in your browser.
+
+### 🚀 Auto-Deployment
+
+The documentation is automatically deployed to GitHub Pages when:
+- Changes are pushed to the main branch
+- The `data/openapi.json` file is updated
+- The workflow is manually triggered
+
+### 📝 Available Endpoints
+
+#### Experiments API
+- `GET /api/v1/experiments` - List experiments
+- `POST /api/v1/experiments` - Create experiment
+- `GET /api/v1/experiments/{id}` - Get experiment details
+- `PATCH /api/v1/experiments/{id}` - Update experiment
+- `DELETE /api/v1/experiments/{id}` - Delete experiment
+
+#### Users API  
+- `GET /api/v1/users` - List users (with pagination)
+- `POST /api/v1/users` - Create user
+- `GET /api/v1/users/{id}` - Get user details
+- `PUT /api/v1/users/{id}` - Update user
+- `DELETE /api/v1/users/{id}` - Delete user
+
+#### Health Check
+- `GET /health` - Service health status
+
 ## Usage
 
-Once the server is running, you can access the API endpoints defined in the OpenAPI specification. Use tools like Postman or curl to interact with the API.
+Once the server is running, you can access the API endpoints defined in the OpenAPI specification. Use tools like Postman, curl, or the interactive documentation to interact with the API.
+
+**Base URL**: `http://localhost:3001` (or `http://localhost:3000` for local development)
+
+### Example Requests
+
+```bash
+# Check server health
+curl http://localhost:3001/health
+
+# List experiments
+curl http://localhost:3001/api/v1/experiments
+
+# List users with pagination
+curl "http://localhost:3001/api/v1/users?limit=5&offset=0"
+
+# Get specific user
+curl http://localhost:3001/api/v1/users/8d7f9e1a-0c5d-4a5f-9e9e-a1b2c3d4e5f6
+```
 
 ## License
 
