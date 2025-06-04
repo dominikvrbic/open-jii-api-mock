@@ -1,0 +1,92 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+.asyncapi
+.openapi
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+.idea
+.python-version
+
+# OpenTofu
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!example.tfvars
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# Docusaurus
+.docusaurus
+.cache-loader
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+dump
+
+# Python egg-info
+*.egg-info/
+*.egg-info
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+cert
+
+# Test/Coverage
+.tox/
+.pytest_cache/
+.coverage
+.coverage.*
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+volumes
+
+.cache
