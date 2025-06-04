@@ -203,8 +203,25 @@ else
     print_result 1 "Docker health check failed: $HEALTH_STATUS"
 fi
 
-# Test 8: Performance test
-echo -e "${YELLOW}Test 8: Basic performance test...${NC}"
+# Test 8: Swagger UI endpoint
+echo -e "${YELLOW}Test 8: Testing Swagger UI documentation endpoint...${NC}"
+DOCS_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/docs/)
+if [ "$DOCS_RESPONSE" = "200" ]; then
+    print_result 0 "Swagger UI docs endpoint responding"
+else
+    print_result 1 "Swagger UI docs endpoint failed (HTTP $DOCS_RESPONSE)"
+fi
+
+# Test root redirect to docs
+ROOT_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -L http://localhost:3001/)
+if [ "$ROOT_RESPONSE" = "200" ]; then
+    print_result 0 "Root redirect to docs working"
+else
+    print_result 1 "Root redirect failed (HTTP $ROOT_RESPONSE)"
+fi
+
+# Test 9: Performance test
+echo -e "${YELLOW}Test 9: Basic performance test...${NC}"
 START_TIME=$(date +%s%N)
 for i in {1..10}; do
     curl -s http://localhost:3001/health > /dev/null
@@ -223,10 +240,12 @@ echo "   • Health check endpoint working"
 echo "   • API endpoints responding correctly"
 echo "   • User CRUD operations working"
 echo "   • Error handling working properly"
+echo "   • Swagger UI documentation accessible"
 echo "   • Docker health checks passing"
 echo "   • Performance is acceptable"
 echo ""
 echo "🌐 Available endpoints:"
+echo "   • Interactive Docs: http://localhost:3001/docs"
 echo "   • Health check: http://localhost:3001/health"
 echo "   • Experiments: http://localhost:3001/api/v1/experiments"
 echo "   • Users: http://localhost:3001/api/v1/users"

@@ -133,9 +133,17 @@ docker-compose down && docker-compose up --build
 
 Once the container is running, the API will be available at:
 
-- Base URL: `http://localhost:3001`
-- Health check: `http://localhost:3001/health`
-- API endpoints: `http://localhost:3001/api/v1/experiments`
+- **Interactive Documentation**: `http://localhost:3001/docs` - Full Swagger UI with API testing
+- **Base URL**: `http://localhost:3001`
+- **Health check**: `http://localhost:3001/health`
+- **API endpoints**: `http://localhost:3001/api/v1/experiments`
+
+The Swagger UI provides interactive documentation where you can:
+
+- View all API endpoints and their specifications
+- Test endpoints directly from the browser
+- See request/response examples
+- Access the complete OpenAPI specification
 
 ## Volume Mounts
 

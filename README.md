@@ -92,43 +92,33 @@ For detailed Docker instructions, see [DOCKER.md](./DOCKER.md).
 
 ## API Documentation
 
-### 📚 Interactive API Docs
+### 📚 Interactive Swagger UI
 
-The API documentation is automatically generated from the OpenAPI specification and available in multiple formats:
+The API documentation is automatically generated from the OpenAPI specification and served directly by the Express application:
 
-- **GitHub Pages**: [Live API Documentation](https://YOUR_USERNAME.github.io/YOUR_REPO/) *(Update this URL)*
-- **Local Documentation**: `docs/index.html`
+- **Interactive Docs**: [http://localhost:3000/docs](http://localhost:3000/docs) (or [http://localhost:3001/docs](http://localhost:3001/docs) when using Docker)
+- **Root Redirect**: [http://localhost:3000/](http://localhost:3000/) automatically redirects to `/docs`
 - **OpenAPI Spec**: `data/openapi.json`
 
-### 🌐 View Documentation Locally
+The Swagger UI provides:
 
-```bash
-# Start a local documentation server
-./serve-docs.sh
-
-# Or manually serve the docs directory
-cd docs && python3 -m http.server 8080
-```
-
-Then open [http://localhost:8080](http://localhost:8080) in your browser.
-
-### 🚀 Auto-Deployment
-
-The documentation is automatically deployed to GitHub Pages when:
-- Changes are pushed to the main branch
-- The `data/openapi.json` file is updated
-- The workflow is manually triggered
+- ✅ **Interactive API testing** - Try out endpoints directly from the documentation
+- 📖 **Complete API reference** - All endpoints, parameters, and response schemas
+- 🎨 **Custom styling** - Clean, modern interface
+- 🔄 **Auto-sync** - Always up-to-date with your OpenAPI specification
 
 ### 📝 Available Endpoints
 
 #### Experiments API
+
 - `GET /api/v1/experiments` - List experiments
 - `POST /api/v1/experiments` - Create experiment
 - `GET /api/v1/experiments/{id}` - Get experiment details
 - `PATCH /api/v1/experiments/{id}` - Update experiment
 - `DELETE /api/v1/experiments/{id}` - Delete experiment
 
-#### Users API  
+#### Users API
+
 - `GET /api/v1/users` - List users (with pagination)
 - `POST /api/v1/users` - Create user
 - `GET /api/v1/users/{id}` - Get user details
@@ -136,6 +126,7 @@ The documentation is automatically deployed to GitHub Pages when:
 - `DELETE /api/v1/users/{id}` - Delete user
 
 #### Health Check
+
 - `GET /health` - Service health status
 
 ## Usage
